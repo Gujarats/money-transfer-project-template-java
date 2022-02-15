@@ -20,7 +20,7 @@ public class AccountActivityImpl implements AccountActivity {
                 amount, accountId, referenceId
         );
         // Uncomment the following line to simulate an Activity error.
-        // throw new RuntimeException("simulated");
+        //throw new RuntimeException("simulated");
     }
 }
 // @@@SNIPEND

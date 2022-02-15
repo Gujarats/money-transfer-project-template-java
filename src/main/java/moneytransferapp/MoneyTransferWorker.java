@@ -1,18 +1,18 @@
 package moneytransferapp;
 
 import io.temporal.client.WorkflowClient;
-import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
+import moneytransferapp.util.Utils;
 
 // @@@SNIPSTART money-transfer-project-template-java-worker
+// TODO this new service that should reside in EC2 or ecs.
 public class MoneyTransferWorker {
 
     public static void main(String[] args) {
 
         // WorkflowServiceStubs is a gRPC stubs wrapper that talks to the local Docker instance of the Temporal server.
-        WorkflowServiceStubs service = WorkflowServiceStubs.newInstance();
-        WorkflowClient client = WorkflowClient.newInstance(service);
+        WorkflowClient client = Utils.initConnectionServer();
         // Worker factory is used to create Workers that poll specific Task Queues.
         WorkerFactory factory = WorkerFactory.newInstance(client);
         Worker worker = factory.newWorker(Shared.MONEY_TRANSFER_TASK_QUEUE);
